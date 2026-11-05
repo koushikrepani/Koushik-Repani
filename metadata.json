@@ -1,0 +1,6 @@
+{
+  "name": "Pulse",
+  "description": "All-in-one daily routine planner, habit tracker, focus timer, and personal productivity hub with seamless mobile navigation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
