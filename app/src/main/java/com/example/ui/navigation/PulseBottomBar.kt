@@ -1,7 +1,7 @@
 package com.example.ui.navigation
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.navigationBars
@@ -22,7 +22,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
-import com.example.ui.theme.PulseIndigoPrimary
+import com.example.ui.theme.NeonIris
+import com.example.ui.theme.VoidSurface
 
 @Composable
 fun PulseBottomBar(
@@ -36,9 +37,13 @@ fun PulseBottomBar(
     NavigationBar(
         modifier = modifier
             .testTag("pulse_bottom_navigation_bar")
-            .windowInsetsPadding(WindowInsets.navigationBars),
-        containerColor = MaterialTheme.colorScheme.surface,
-        tonalElevation = 6.dp
+            .windowInsetsPadding(WindowInsets.navigationBars)
+            .border(
+                width = 0.5.dp,
+                color = Color(0x336366F1)
+            ),
+        containerColor = VoidSurface.copy(alpha = 0.94f),
+        tonalElevation = 8.dp
     ) {
         Screen.bottomNavItems.forEach { screen ->
             val isSelected = screen == currentScreen
@@ -53,8 +58,8 @@ fun PulseBottomBar(
                                 Screen.Planner -> {
                                     if (pendingTasksCount > 0) {
                                         Badge(
-                                            containerColor = MaterialTheme.colorScheme.primary,
-                                            contentColor = MaterialTheme.colorScheme.onPrimary
+                                            containerColor = NeonIris,
+                                            contentColor = Color.White
                                         ) {
                                             Text(text = if (pendingTasksCount > 9) "9+" else "$pendingTasksCount")
                                         }
@@ -63,8 +68,8 @@ fun PulseBottomBar(
                                 Screen.Habits -> {
                                     if (uncompletedHabitsCount > 0) {
                                         Badge(
-                                            containerColor = MaterialTheme.colorScheme.secondary,
-                                            contentColor = MaterialTheme.colorScheme.onSecondary
+                                            containerColor = Color(0xFFFF9800),
+                                            contentColor = Color.Black
                                         ) {
                                             Text(text = "$uncompletedHabitsCount")
                                         }
@@ -93,15 +98,16 @@ fun PulseBottomBar(
                 label = {
                     Text(
                         text = screen.title,
-                        style = MaterialTheme.typography.labelSmall
+                        style = MaterialTheme.typography.labelSmall,
+                        fontWeight = if (isSelected) androidx.compose.ui.text.font.FontWeight.Bold else androidx.compose.ui.text.font.FontWeight.Normal
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                    selectedTextColor = MaterialTheme.colorScheme.primary,
-                    indicatorColor = MaterialTheme.colorScheme.primaryContainer,
-                    unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    selectedIconColor = Color.White,
+                    selectedTextColor = NeonIris,
+                    indicatorColor = NeonIris.copy(alpha = 0.28f),
+                    unselectedIconColor = Color(0xFF64748B),
+                    unselectedTextColor = Color(0xFF64748B)
                 ),
                 modifier = Modifier.testTag("nav_item_${screen.route}")
             )

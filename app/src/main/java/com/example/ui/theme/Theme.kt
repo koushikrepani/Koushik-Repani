@@ -1,76 +1,64 @@
 package com.example.ui.theme
 
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorScheme = darkColorScheme(
-    primary = PulseIndigoPrimary,
-    onPrimary = PulseIndigoOnPrimary,
-    primaryContainer = PulseIndigoContainerDark,
-    onPrimaryContainer = PulseIndigoOnContainerDark,
-    secondary = PulseCoralSecondary,
-    onSecondary = PulseCoralOnSecondary,
-    secondaryContainer = PulseCoralContainerDark,
-    onSecondaryContainer = PulseCoralOnContainerDark,
-    tertiary = PulseCyanTertiary,
-    onTertiary = PulseCyanOnTertiary,
-    tertiaryContainer = PulseCyanContainerDark,
-    onTertiaryContainer = PulseCyanOnContainerDark,
-    background = PulseDarkBackground,
-    onBackground = PulseDarkOnSurface,
-    surface = PulseDarkSurface,
-    onSurface = PulseDarkOnSurface,
-    surfaceVariant = PulseDarkSurfaceVariant,
-    onSurfaceVariant = PulseDarkOnSurfaceVariant,
-    outline = PulseDarkOutline,
-    outlineVariant = Color(0xFF1E293B)
+private val CyberDarkColorScheme = darkColorScheme(
+    primary = NeonIris,
+    onPrimary = Color.White,
+    primaryContainer = Color(0xFF1E1B4B),
+    onPrimaryContainer = Color(0xFFE0E7FF),
+    secondary = NeonAmber,
+    onSecondary = Color.Black,
+    secondaryContainer = Color(0xFF451A03),
+    onSecondaryContainer = Color(0xFFFFEDD5),
+    tertiary = NeonCyan,
+    onTertiary = Color.Black,
+    tertiaryContainer = Color(0xFF083344),
+    onTertiaryContainer = Color(0xFFCFFAFE),
+    background = VoidBlack,
+    onBackground = Color(0xFFF1F5F9),
+    surface = VoidSurface,
+    onSurface = Color(0xFFF8FAFC),
+    surfaceVariant = VoidSurfaceVariant,
+    onSurfaceVariant = Color(0xFF94A3B8),
+    outline = GlassBorder,
+    outlineVariant = Color(0x1AFFFFFF)
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = PulseIndigoPrimary,
-    onPrimary = PulseIndigoOnPrimary,
-    primaryContainer = PulseIndigoContainerLight,
-    onPrimaryContainer = PulseIndigoOnContainerLight,
-    secondary = PulseCoralSecondary,
-    onSecondary = PulseCoralOnSecondary,
-    secondaryContainer = PulseCoralContainerLight,
-    onSecondaryContainer = PulseCoralOnContainerLight,
-    tertiary = PulseCyanTertiary,
-    onTertiary = PulseCyanOnTertiary,
-    tertiaryContainer = PulseCyanContainerLight,
-    onTertiaryContainer = PulseCyanOnContainerLight,
-    background = PulseLightBackground,
-    onBackground = PulseLightOnSurface,
-    surface = PulseLightSurface,
-    onSurface = PulseLightOnSurface,
-    surfaceVariant = PulseLightSurfaceVariant,
-    onSurfaceVariant = PulseLightOnSurfaceVariant,
-    outline = PulseLightOutline,
+private val CyberLightColorScheme = lightColorScheme(
+    primary = NeonIris,
+    onPrimary = Color.White,
+    primaryContainer = Color(0xFFEEF2FF),
+    onPrimaryContainer = Color(0xFF312E81),
+    secondary = Color(0xFFEA580C),
+    onSecondary = Color.White,
+    secondaryContainer = Color(0xFFFFEDD5),
+    onSecondaryContainer = Color(0xFF7C2D12),
+    tertiary = Color(0xFF0891B2),
+    onTertiary = Color.White,
+    tertiaryContainer = Color(0xFFCFFAFE),
+    onTertiaryContainer = Color(0xFF164E63),
+    background = Color(0xFFF8FAFC),
+    onBackground = Color(0xFF090D16),
+    surface = Color(0xFFFFFFFF),
+    onSurface = Color(0xFF0F172A),
+    surfaceVariant = Color(0xFFF1F5F9),
+    onSurfaceVariant = Color(0xFF64748B),
+    outline = Color(0xFFCBD5E1),
     outlineVariant = Color(0xFFE2E8F0)
 )
 
 @Composable
 fun MyApplicationTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = false, // Set false to preserve our custom branded aesthetic
+    darkTheme: Boolean = true, // Default to stunning dark cyber-zen aesthetic
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
+    val colorScheme = if (darkTheme) CyberDarkColorScheme else CyberLightColorScheme
 
     MaterialTheme(
         colorScheme = colorScheme,

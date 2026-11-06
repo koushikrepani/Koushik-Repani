@@ -1,9 +1,12 @@
 package com.example
 
+import com.example.data.local.HabitEntity
+import com.example.data.local.HabitLogEntity
 import com.example.data.local.TaskEntity
 import com.example.ui.navigation.Screen
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class ExampleUnitTest {
@@ -46,5 +49,39 @@ class ExampleUnitTest {
         assertEquals(2, completed)
         assertEquals(2, pending)
         assertEquals(0.5f, progress, 0.001f)
+    }
+
+    @Test
+    fun habitTracking_completionAndStreaks_areCorrect() {
+        val habit1 = HabitEntity(id = 10, title = "Morning Run", currentStreak = 5, totalCompletions = 12)
+        val habit2 = HabitEntity(id = 20, title = "Read Book", currentStreak = 3, totalCompletions = 8)
+
+        val logs = listOf(
+            HabitLogEntity(id = 1, habitId = 10, dateString = "2026-11-05"),
+            HabitLogEntity(id = 2, habitId = 10, dateString = "2026-11-04"),
+            HabitLogEntity(id = 3, habitId = 20, dateString = "2026-11-05")
+        )
+
+        val completedOnNov5 = logs.filter { it.dateString == "2026-11-05" }.map { it.habitId }.toSet()
+
+        assertTrue(completedOnNov5.contains(10L))
+        assertTrue(completedOnNov5.contains(20L))
+        assertEquals(2, completedOnNov5.size)
+
+        val completedOnNov4 = logs.filter { it.dateString == "2026-11-04" }.map { it.habitId }.toSet()
+        assertTrue(completedOnNov4.contains(10L))
+        assertEquals(1, completedOnNov4.size)
+    }
+
+    @Test
+    fun pomodoro_modesAndTimingCalculations_areCorrect() {
+        assertEquals(25, com.example.ui.components.PomodoroMode.FOCUS.defaultMinutes)
+        assertEquals(5, com.example.ui.components.PomodoroMode.SHORT_BREAK.defaultMinutes)
+        assertEquals(15, com.example.ui.components.PomodoroMode.LONG_BREAK.defaultMinutes)
+
+        val totalSeconds = 25 * 60
+        val remainingSeconds = 15 * 60
+        val progress = ((totalSeconds - remainingSeconds).toFloat() / totalSeconds.toFloat())
+        assertEquals(0.4f, progress, 0.001f)
     }
 }

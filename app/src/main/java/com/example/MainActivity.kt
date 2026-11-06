@@ -196,8 +196,10 @@ fun PulseApp(viewModel: PulseViewModel) {
                         selectedCategory = habitsSelectedCategory,
                         onCategoryChange = { viewModel.habitsSelectedCategory.value = it },
                         onToggleHabitToday = { viewModel.toggleHabitToday(it) },
+                        onToggleHabitForDate = { habit, dateStr -> viewModel.toggleHabitForDate(habit, dateStr) },
                         onHabitClick = { viewModel.openHabitDetail(it) },
-                        onNewHabit = { viewModel.openNewHabitSheet() }
+                        onNewHabit = { viewModel.openNewHabitSheet() },
+                        onQuickAddHabit = { title, cat, hex, icon -> viewModel.quickAddHabit(title, cat, hex, icon) }
                     )
 
                     Screen.Focus -> FocusScreen(

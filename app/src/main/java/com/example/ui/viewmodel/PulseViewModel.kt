@@ -314,9 +314,34 @@ class PulseViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun toggleHabitToday(habit: HabitEntity) {
+        toggleHabitForDate(habit, todayDateStr)
+    }
+
+    fun toggleHabitForDate(habit: HabitEntity, dateString: String) {
         viewModelScope.launch {
-            repository.toggleHabitForDate(habit, todayDateStr)
+            repository.toggleHabitForDate(habit, dateString)
             triggerHaptic(2)
+        }
+    }
+
+    fun quickAddHabit(
+        title: String,
+        category: String = "Health",
+        colorHex: String = "#6366F1",
+        iconName: String = "water"
+    ) {
+        if (title.isBlank()) return
+        viewModelScope.launch {
+            val habit = HabitEntity(
+                title = title.trim(),
+                category = category,
+                iconName = iconName,
+                colorHex = colorHex,
+                targetDaysPerWeek = 7
+            )
+            repository.insertHabit(habit)
+            triggerHaptic(1)
+            _snackbarMessage.value = "Habit created: $title"
         }
     }
 

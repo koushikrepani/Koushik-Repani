@@ -44,6 +44,10 @@ class PulseRepository(private val appDao: AppDao) {
         return appDao.getHabitLogsForDate(dateString)
     }
 
+    fun getHabitLogsForDateRange(startDate: String, endDate: String): Flow<List<HabitLogEntity>> {
+        return appDao.getHabitLogsForDateRange(startDate, endDate)
+    }
+
     fun getLogsForHabit(habitId: Long): Flow<List<HabitLogEntity>> {
         return appDao.getLogsForHabit(habitId)
     }

@@ -1,54 +1,45 @@
 package com.example.ui.theme
 
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
-// Primary Indigo / Pulse Purple
-val PulseIndigoPrimary = Color(0xFF6366F1)
-val PulseIndigoOnPrimary = Color(0xFFFFFFFF)
-val PulseIndigoContainerDark = Color(0xFF312E81)
-val PulseIndigoOnContainerDark = Color(0xFFE0E7FF)
-val PulseIndigoContainerLight = Color(0xFFEEF2FF)
-val PulseIndigoOnContainerLight = Color(0xFF3730A3)
+// Obsidian Void Base
+val VoidBlack = Color(0xFF06080F)
+val VoidSurface = Color(0xFF0C101B)
+val VoidSurfaceVariant = Color(0xFF141A29)
+val GlassSurface = Color(0x1FFFFFFF)
+val GlassSurfaceActive = Color(0x2EFFFFFF)
+val GlassBorder = Color(0x26FFFFFF)
 
-// Secondary Coral / Fire
-val PulseCoralSecondary = Color(0xFFF97316)
-val PulseCoralOnSecondary = Color(0xFFFFFFFF)
-val PulseCoralContainerDark = Color(0xFF7C2D12)
-val PulseCoralOnContainerDark = Color(0xFFFFEDD5)
-val PulseCoralContainerLight = Color(0xFFFFF7ED)
-val PulseCoralOnContainerLight = Color(0xFF9A3412)
+// Neon Cyber & Aurora Accents
+val NeonIris = Color(0xFF6366F1)
+val NeonCyan = Color(0xFF06B6D4)
+val NeonMint = Color(0xFF10B981)
+val NeonAmber = Color(0xFFFF9800)
+val NeonCoral = Color(0xFFFF4D4D)
+val NeonPurple = Color(0xFFA855F7)
+// Legacy aliases mapped to Cyber-Zen palette
+val PulseIndigoPrimary = NeonIris
+val PulseIndigoOnPrimary = Color.White
 
-// Tertiary Cyan / Wave
-val PulseCyanTertiary = Color(0xFF06B6D4)
-val PulseCyanOnTertiary = Color(0xFFFFFFFF)
-val PulseCyanContainerDark = Color(0xFF164E63)
-val PulseCyanOnContainerDark = Color(0xFFCFFAFE)
-val PulseCyanContainerLight = Color(0xFFECFEFF)
-val PulseCyanOnContainerLight = Color(0xFF155E75)
+// Iridescent Glow Brushes
+val AuroraBrush = Brush.linearGradient(
+    colors = listOf(Color(0xFF6366F1), Color(0xFFA855F7), Color(0xFF06B6D4))
+)
 
-// Dark Theme Surfaces
-val PulseDarkBackground = Color(0xFF0A0E1A)
-val PulseDarkSurface = Color(0xFF111827)
-val PulseDarkSurfaceVariant = Color(0xFF1E293B)
-val PulseDarkOnSurface = Color(0xFFF8FAFC)
-val PulseDarkOnSurfaceVariant = Color(0xFF94A3B8)
-val PulseDarkOutline = Color(0xFF334155)
+val FlameBrush = Brush.linearGradient(
+    colors = listOf(Color(0xFFFF4D4D), Color(0xFFFF9800))
+)
 
-// Light Theme Surfaces
-val PulseLightBackground = Color(0xFFF8FAFC)
-val PulseLightSurface = Color(0xFFFFFFFF)
-val PulseLightSurfaceVariant = Color(0xFFF1F5F9)
-val PulseLightOnSurface = Color(0xFF0F172A)
-val PulseLightOnSurfaceVariant = Color(0xFF64748B)
-val PulseLightOutline = Color(0xFFCBD5E1)
+val GlassBorderBrush = Brush.linearGradient(
+    colors = listOf(Color(0x406366F1), Color(0x1FFFFFFF), Color(0x4006B6D4))
+)
 
-// Functional Category & Priority Accents
-val AccentUrgent = Color(0xFFEF4444)
-val AccentHigh = Color(0xFFF97316)
-val AccentMedium = Color(0xFF3B82F6)
-val AccentLow = Color(0xFF10B981)
+// Priority Accents
+val AccentUrgent = Color(0xFFFF453A)
+val AccentHigh = Color(0xFFFF9F0A)
+val AccentMedium = Color(0xFF0A84FF)
+val AccentLow = Color(0xFF30D158)
 
-val FlameGold = Color(0xFFFF9800)
-val FocusPurple = Color(0xFF8B5CF6)
-val CardBorderDark = Color(0x336366F1)
-val CardBorderLight = Color(0x1F6366F1)
+val FlameGold = Color(0xFFFFB300)
+val FocusPurple = Color(0xFFA855F7)

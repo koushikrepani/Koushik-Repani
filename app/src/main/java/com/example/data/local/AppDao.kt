@@ -52,6 +52,9 @@ interface AppDao {
     @Query("SELECT * FROM habit_logs WHERE dateString = :dateString")
     fun getHabitLogsForDate(dateString: String): Flow<List<HabitLogEntity>>
 
+    @Query("SELECT * FROM habit_logs WHERE dateString >= :startDate AND dateString <= :endDate")
+    fun getHabitLogsForDateRange(startDate: String, endDate: String): Flow<List<HabitLogEntity>>
+
     @Query("SELECT * FROM habit_logs WHERE habitId = :habitId")
     fun getLogsForHabit(habitId: Long): Flow<List<HabitLogEntity>>
 

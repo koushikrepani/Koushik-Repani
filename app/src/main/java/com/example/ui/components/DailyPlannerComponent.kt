@@ -107,12 +107,12 @@ fun DailyPlannerComponent(
             .testTag("daily_planner_component_card"),
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = com.example.ui.theme.VoidSurface.copy(alpha = 0.88f)
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         border = androidx.compose.foundation.BorderStroke(
             1.dp,
-            MaterialTheme.colorScheme.outline.copy(alpha = 0.18f)
+            com.example.ui.theme.GlassBorderBrush
         )
     ) {
         Column(modifier = Modifier.padding(18.dp)) {
@@ -128,13 +128,13 @@ fun DailyPlannerComponent(
                         modifier = Modifier
                             .size(36.dp)
                             .clip(CircleShape)
-                            .background(PulseIndigoPrimary.copy(alpha = 0.15f)),
+                            .background(com.example.ui.theme.NeonIris.copy(alpha = 0.2f)),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             imageVector = Icons.Filled.EventNote,
                             contentDescription = null,
-                            tint = PulseIndigoPrimary,
+                            tint = com.example.ui.theme.NeonIris,
                             modifier = Modifier.size(20.dp)
                         )
                     }
@@ -143,12 +143,13 @@ fun DailyPlannerComponent(
                         Text(
                             text = "Daily Planner",
                             style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
                         )
                         Text(
                             text = currentDateStr,
                             style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = Color(0xFF94A3B8)
                         )
                     }
                 }
@@ -156,16 +157,20 @@ fun DailyPlannerComponent(
                 Surface(
                     shape = RoundedCornerShape(12.dp),
                     color = if (completedCount == totalCount && totalCount > 0) {
-                        Color(0xFF10B981).copy(alpha = 0.15f)
+                        com.example.ui.theme.NeonMint.copy(alpha = 0.2f)
                     } else {
-                        MaterialTheme.colorScheme.surfaceVariant
-                    }
+                        com.example.ui.theme.VoidSurfaceVariant
+                    },
+                    border = androidx.compose.foundation.BorderStroke(
+                        1.dp,
+                        if (completedCount == totalCount && totalCount > 0) com.example.ui.theme.NeonMint.copy(alpha = 0.5f) else com.example.ui.theme.GlassBorder
+                    )
                 ) {
                     Text(
                         text = "$completedCount/$totalCount Done",
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = FontWeight.Bold,
-                        color = if (completedCount == totalCount && totalCount > 0) Color(0xFF10B981) else MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = if (completedCount == totalCount && totalCount > 0) com.example.ui.theme.NeonMint else Color.White,
                         modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
                     )
                 }
